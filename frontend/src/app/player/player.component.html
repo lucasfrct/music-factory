@@ -32,10 +32,14 @@
         width: 100%;
     }
 
+    .bar-status .logo img {
+        max-height: 64px;
+        width: auto;
+    }
+
     .bar-status .clock {
         font-size: 1.3rem;
     }
-
 
     .bar-status > * > * > span {
         font-size: 0.8rem;
@@ -62,6 +66,10 @@
     .cartridge {
         display: grid;
         grid-template-columns: 1fr 2.3fr;
+        grid-template-areas: 
+            "playedList cards"
+            "playedList controls"
+        ;
     }
 
     .cartridge > .played-list {
@@ -71,6 +79,7 @@
         background-color: #FFF;
         padding: 16px;
         min-width: 360px;
+        grid-area: playedList;
     }
 
     .cartridge > .played-list > .listed {
@@ -111,13 +120,16 @@
     }
 
     .cartridge .cards {
+        height: calc(100vh - 160px);
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         grid-template-rows: repeat(6, 1fr);
         padding: 4px;
+        overflow: hidden;
+        grid-area: cards;
     }
 
-    .cartridge .cards > * {
+    .cartridge .cards > *:not(div) {
         border: solid 1px #DDD;
         padding: 4px;
         overflow: hidden;
@@ -136,6 +148,11 @@
     .cartridge .cards > *.active {
         animation: blink-animation 1s steps(5, start) infinite;
         -webkit-animation: blink-animation 1s steps(5, start) infinite;
+    }
+
+    .cartridge .cards > div {
+        border: solid 1px #F00;
+        width: 100%;
     }
 
     .cartridge .cards > * > span {
@@ -161,6 +178,25 @@
         margin-left: -8px;
     }
 
+    .cartridge .controls {
+        grid-area: controls;
+        background-color: #FFF;
+        display: block;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cartridge .controls > label {
+        font-weight: 700;
+    }
+
+    .cartridge .controls > input {
+        width: 80%;
+        margin: auto auto;
+    }
+
     @keyframes blink-animation {
         to {
             border: solid 4px #F00
@@ -171,6 +207,35 @@
             border: solid 4px #F00
         }
     }
+
+
+    @media (max-width: 768px) { 
+
+        .bar-status {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(3, 64px);
+            grid-gap: 8px;
+        }
+
+        .cartridge {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-areas: 
+                "cards"
+                "controls"
+                "playedList"
+            ;
+        }
+
+        .cartridge .cards {
+            height: auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(15, 1fr);
+            grid-area: cards;
+        }
+     }
 
 </style>
 
@@ -213,7 +278,7 @@
                 <span>Hora</span>
             </div>
 
-            <div class="item" *ngFor="let item  of playlist.reverse(); let i = index" >
+            <div class="item" *ngFor="let item  of playlist; let i = index" >
                 <strong>{{item.name}}</strong>
                 <span>{{item.duration}}</span>
                 <span>{{item.clock}}</span>
@@ -236,7 +301,11 @@
                 <source src="{{card.src}}">
             </audio>
         </section>
+    </div>
 
+    <div class="controls">
+        <label>Volume: {{status.current.volume}}</label>
+        <input type="range" #ref (change)="changeVolume(ref.value)" value="{{status.current.volume}}">
     </div>
 
 </section>
