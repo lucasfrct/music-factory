@@ -14,4 +14,4 @@
     - indicação da reprodução anterior
 
 ## Amostra de tela
-     ![](/frontend/src/assets/screenshots/1.jpg)
+     ![home](https://github.com/lucasfrct/music-factory/blob/master/frontend/src/assets/screenshots/1.jpg)
