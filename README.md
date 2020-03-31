@@ -14,4 +14,4 @@
     - indicação da reprodução anterior
 
 ## Amostra de tela
-     ![]("frontend/src/assets/screenshots/1.jpg")
+![](frontend/src/assets/screenshots/1.jpg)
