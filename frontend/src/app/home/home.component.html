@@ -1,0 +1,49 @@
+<style>
+    .link-container {
+        text-decoration: none;
+        color: #e11f25;
+    }
+
+    .home-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+        position: relative;
+    }
+
+    .home-container > div {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .home-container > div > * {
+        width: 100%;
+        margin: 0;
+        text-align: center;
+    }
+
+    .home-container > div > .title {
+        font-size: 5rem;
+        margin-bottom: 48px;
+    }
+
+    .home-container > div > .logo img {
+        width: 
+        30%;
+    }
+
+</style>
+<a routerLink="/player" class="link-container">
+    <section class="home-container">
+        <div>
+            <h1 class="title">Music Factoty</h1>
+            <figure class="logo">
+                <img src="../assets/images/logo.png" />
+            </figure>
+        </div>
+    </section>
+</a>
+<router-outlet></router-outlet>
