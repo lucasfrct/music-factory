@@ -15,3 +15,4 @@
 
 ## Amostra de tela
 ![](frontend/src/assets/screenshots/1.jpg)
+![](frontend/src/assets/screenshots/2.jpg)
