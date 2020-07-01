@@ -1,6 +1,0 @@
-{
-    "files.autoSave": "onFocusChange",
-    "editor.defaultFormatter": "vscode.configuration-editing",
-    "html.format.indentHandlebars": true,
-    "html.format.indentInnerHtml": true
-}
