@@ -1,0 +1,26 @@
+.cartridge {
+    min-width: 286px;
+    display: grid;
+    grid-template-columns: 1fr 48px;
+    grid-template-rows: 48px calc(100vh - 90px);
+    grid-template-areas: 'context context' 'cards volume';
+}
+
+.cartridge collection {
+    grid-area: context;
+}
+
+.cartridge .cards {
+    grid-area: cards;
+}
+
+.cartridge volume {
+    grid-area: volume;
+}
+
+.cartridge .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 80px);
+    grid-template-rows: repeat(auto-fill, 80px);
+    grid-gap: 8px;
+}

@@ -1,0 +1,19 @@
+<section class="window color-secondary">
+    <div class="window-bar">
+        <span class="return" (click)="return()"></span>
+        {{path}}
+        <button class="btn danger" (click)="toggleWindow()">close</button>
+    </div>
+    <ul class="window-show">
+        <li 
+            class="noselect" 
+            *ngFor="let directory of directories" 
+            (click)="select(directory)"
+        >
+            <span class="{{ (directory.type == 'directory') ? 'folder' : 'file' }}"></span>{{directory.name}}
+    </li>
+    </ul>
+    <div class="window-bar">
+        <button class="btn danger" (click)="toggleWindow()">close</button>
+    </div>
+</section>

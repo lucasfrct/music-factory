@@ -1,0 +1,45 @@
+.volume {
+    min-height: 100px;
+    height: 100%;
+    background-color: rgba(255,255,255,0.1);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 24px 1fr 24px;
+    border-radius: 6px;
+}
+
+.volume .volume-settings, 
+.volume-cue {
+    margin: 0;
+    font-size: 10px;
+    background-color: rgba(255,255,255,0.1);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.volume .volume-cue {
+    cursor: pointer;
+    opacity: 0.5;
+    letter-spacing: 2px;
+    border-radius: 2px 2px 6px 6px;
+}
+
+.volume .volume-cue:hover {
+    opacity: 1;
+}
+
+
+.volume .volume-cue.active {
+    opacity: 1;
+}
+
+.volume .fader {
+    height: calc(100% - 32px) !important;
+    margin: 16px auto 0 auto !important;
+}
+
+.volume .ng5-slider .ng5-slider-bubble {
+    font-size: 9px !important;
+}
