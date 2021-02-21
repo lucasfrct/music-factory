@@ -1,0 +1,42 @@
+<section class="cartridge">
+    
+    <collection 
+        [collection]="collection"
+        (changeCollection)="changeCollection($event)"
+    ></collection>
+
+    <div class="cards">
+        <card 
+            *ngFor="let path of collection.catalog" 
+            [path]="path"
+            (played)="PlayCard($event)" 
+            (onLoad)="loadCard($event)"
+            (changeContextmenu)="changeContextMenu($event)"
+        ></card>
+
+        <card class="card-add" [disabled]="true" (click)="toggleWindow()" ></card>
+    </div>
+
+    <volume 
+        (onLoad)="loadVolume($event)"
+        (onEnd)="endVolume($event)"
+    ></volume>
+
+</section>
+
+<window 
+    class="modal" 
+    *ngIf="WindowComponent.active" 
+    [collection]="collection"
+    (onLoad)="loadWindow($event)"
+    (changeFile)="changeFile($event)"
+></window>
+
+<context 
+    class="modal"
+    *ngIf="ContextComponent.active"
+    [Card]="Card"
+    (onLoad)="loadContext($event)"
+    (onRemove)="removeCard($event)"
+    (onRename)="renameCard($event)"
+></context>

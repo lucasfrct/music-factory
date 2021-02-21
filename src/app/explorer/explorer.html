@@ -1,0 +1,22 @@
+
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+
+const socket = io()
+socket.on('connect', () => { console.log("connect socket Client") })
+
+socket.on('explorer', (path) => {
+    console.log("Explorer Response path: ", path)
+})
+
+let counter = 0;
+setInterval(() => {
+  ++counter;
+  socket.emit('explorer', { counter }); // the object will be serialized for you
+}, 3000);
+
+</script>
+
+<h1>Explorer - socket</h1>

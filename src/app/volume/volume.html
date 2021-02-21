@@ -1,0 +1,14 @@
+<section class="volume">
+    <div class="volume-settings">{{Volume.time}}</div>
+    <ng5-slider 
+        class="fader" 
+        [(value)]="Volume.volume" 
+        [options]="Volume.options"
+        (userChange)="Volume.onUserChange($event)"
+        (userChangeEnd)="onUserChangeEnd($event)"
+    ></ng5-slider>
+    <div 
+        class="volume-cue {{ (cue) ? 'active warning' : ''}}" 
+        (click)="cueToggle()"
+    >cue</div>
+</section>
