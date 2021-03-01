@@ -1,9 +1,0 @@
-<section 
-    class="card color-header noselect {{(Card.active)? 'active': ''}} {{(disabled) ? 'card-add' : ''}} {{ (Card.cue) ? 'cue' : '' }}"
-    (click)="play(Card)"
-    (contextmenu)="changeContextMenu(Card)"
->
-    <div class="card-info" *ngIf="disabled">+</div>
-    <div class="card-info" *ngIf="!Card.active && !disabled">{{Card.name | slice: 0:20}}</div>
-    <div class="card-time" *ngIf="!disabled">{{Card.countdown}}</div>
-</section>
