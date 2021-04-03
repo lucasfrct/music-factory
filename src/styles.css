@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+html .background-primary {
+    background-color: #000000;
+}
+
+html .background-secoundary {
+    background-color: #121212;
+}
+
+html .background-terciary {
+    background-color: #202020;
+}
+
+html .background-quartenary {
+    background-color: #282828;
+}
+
+html .background-hover {
+    background-color: #333333;
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.row-flex {
+    display: flex !important;
+}
+
+.row-flex .col {
+    min-height: 100% !important;
+    padding: 0 !important;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    background-color: #000000;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #282828;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: gray;
+    outline: 1px solid slategrey;
+}

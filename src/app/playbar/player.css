@@ -1,0 +1,99 @@
+#player {
+    max-width: 480px;
+    min-width: 90px;
+    margin: 0 auto;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none; 
+}
+
+#player i {
+    cursor: pointer;
+}
+
+#player i:hover,
+#player i:focus {
+    color: gray;
+}
+
+#player > .controls,
+#player > .display,
+#player > .volume {
+    display: grid;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#player > .controls {
+    grid-template-columns: repeat(5, 32px) ;
+    grid-template-rows: auto;
+}
+
+#player > .controls > *:not(:nth-child(3)) {
+    transform: scale(0.5);
+}
+
+#player > .display {
+    grid-template-columns: 30px 1fr 30px;
+}
+
+#player > .display > *:not(:nth-child(2)) {
+    transform: scale(0.5);
+}
+
+#player .display-time {
+    min-width: 180px;
+}
+
+#player > .volume {
+    display: grid;
+    grid-template-columns: 32px 32px 1fr;
+    width: 160px;
+    float: right;
+    padding: 4px;
+    transform: scale(0.7);
+}
+
+#player > .volume > i {
+    transform: scale(0.95);
+}
+
+#player .volume-value {
+    min-width: 60px;
+}
+
+mat-slider {
+    width: 100%;
+    height: 18px;
+}
+
+::ng-deep mat-slider > * {
+    padding: -0 !important;
+    margin: -16px 0 0 0 !important;
+    position: relative;
+}
+
+::ng-deep .mat-accent .mat-slider-thumb {
+    background-color: #FFF !important;
+} 
+
+::ng-deep .mat-accent .mat-slider-thumb-label {
+    background-color: rgba(127,127,127,0.9);
+} 
+
+::ng-deep .mat-accent .mat-slider-track-background,
+::ng-deep .mat-accent .mat-slider-track-background:hover,
+::ng-deep .mat-accent .mat-slider-track-background:focus {
+    background-color: rgba(255,255,255, 0.3) !important;
+}
+
+::ng-deep .mat-accent .mat-slider-track-fill {
+    background-color: #FFF;
+} 
