@@ -1,0 +1,8 @@
+#playbar {
+    height: 56px;
+    color: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}

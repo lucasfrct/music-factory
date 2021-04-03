@@ -1,0 +1,46 @@
+<section id="playbar" class="row background-terciary">
+    <div class="col s3"></div>
+    <div class="col s6">
+        <section id="player">
+            <div class="controls">
+                <i class="material-icons">shuffle</i>
+                <i class="material-icons">skip_previous</i>
+                <i class="material-icons">play_circle_filled</i>
+                <i class="material-icons">skip_next</i>
+                <i class="material-icons">repeat</i>
+            </div>
+            <div class="display">
+                <span>0:00</span>
+                <mat-slider
+                    class="displaytime"
+                    thumbLabel
+                    (change)="pictureManip($event)"
+                    [displayWith]="formatLabel"
+                    tickInterval="100"
+                    min="1"
+                    max="100"   
+                ></mat-slider>
+                <span>0:00</span>
+            </div>
+        </section>
+    </div>
+
+    <div class="col s3">
+        <section id="player">
+            <div class="volume">
+                <i class="material-icons">playlist_play</i>
+                <i class="material-icons">volume_up</i> 
+                <mat-slider
+                    class="volume-value"
+                    thumbLabel
+                    (change)="pictureManip($event)"
+                    [displayWith]="formatLabel"
+                    tickInterval="100"
+                    min="1"
+                    max="100"   
+                ></mat-slider>
+            </div>
+            <div class="list"></div>
+        </section>
+    </div>
+</section>

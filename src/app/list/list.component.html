@@ -1,0 +1,22 @@
+<section id="list" class="background-secoundary">
+    
+    <div class="list-bar background-terciary">
+        <i class="material-icons">chevron_left</i>
+        <i class="material-icons">chevron_right</i>
+        <div><input name="search" type="search" placeholder="Digite..." (change)="search($event.target)"></div>
+        <ul>
+            <li *ngFor="let cat of categories">{{cat.name}}</li>
+        </ul>
+        <div class="list-account">
+            <i class="material-icons">account_circle</i>
+            <span>lucasfrct</span>
+        </div>
+    </div>
+
+    <div class="list-content">
+        <div class="list-title">Artistas</div>
+
+        <app-card [card]="car" *ngFor="let car of list"></app-card>
+
+    </div>
+</section>

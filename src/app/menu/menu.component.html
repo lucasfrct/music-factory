@@ -1,0 +1,39 @@
+<section id="menu" class="row row-flex">
+
+    <nav class="background-primary">
+        <div>
+            <a data-target="slide-out" class="sidenav-trigger show-on-medium-and-down">
+                <i class="material-icons">{{menu.icon}}</i>
+            </a>
+        </div>
+        <ul class="hide-on-med-and-down">
+            <li class="not-hover menu-logo">
+                <img id="menu-logo" class="circle" src="{{menu.logoUrl}}"> 
+                <span>Music Factory</span>
+            </li>
+            <li *ngFor="let item of menu.items">
+                <a class="waves-effect"><i class="material-icons">{{item.icon}}</i>{{item.name}}</a>
+            </li>
+            <li class="line-divider"></li>
+            <li class="not-hover"><span class="subheader">PLAYLISTS</span></li>
+            <li *ngFor="let playlist of menu.playlists">
+                <a class="waves-effect"><i class="material-icons">{{playlist.icon}}</i>{{playlist.name}}</a>
+            </li>
+        </ul>
+    </nav>
+
+    <ul id="slide-out" class="background-primary sidenav" >
+        <li class="not-hover user-view">
+            <img class="circle" src="{{menu.logoUrl}}">
+        </li>
+        <li *ngFor="let item of menu.items">
+            <a class="waves-effect"><i class="material-icons">{{item.icon}}</i>{{item.name}}</a>
+        </li>
+        <li class="line-divider"></li>
+        <li class="not-hover"><span class="subheader">PLAYLISTS</span></li>
+        <li *ngFor="let playlist of menu.playlists">
+            <a class="waves-effect"><i class="material-icons">{{playlist.icon}}</i>{{playlist.name}}</a>
+        </li>
+    </ul>
+
+</section>
