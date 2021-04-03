@@ -1,5 +1,5 @@
 
-<div id="card" class="">
+<div id="card" class="" (click)="cardClick(card)">
     <img src="{{card.album.cover}}" alt="" class="circle responsive-img"> 
     <span class="truncate">
       {{card.album.title}} | <small> {{card.album.release_date}} </small>

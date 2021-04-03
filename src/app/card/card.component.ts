@@ -1,16 +1,29 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+    selector: 'app-card',
+    templateUrl: './card.component.html',
+    styleUrls: ['./card.component.css']
 })
 export class CardComponent implements OnInit {
-  
-  @Input() card: any
 
-  constructor() { }
+    @Input() card: any
+    @Output() list = new EventEmitter()
 
-  ngOnInit(): void { }
+    constructor() { }
+
+    ngOnInit(): void { }
+
+    public cardClick(card: any) {
+        console.log("CLICK card: ", card)
+
+        console.log("CLICK card: ", card.preview)
+
+        let au = new Audio(card.preview)
+        au.play()
+        
+        setTimeout(()=> { au.pause() }, 3000)
+
+    }
 
 }

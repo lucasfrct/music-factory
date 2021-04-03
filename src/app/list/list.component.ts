@@ -24,12 +24,11 @@ export class ListComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        
         let that = this
-
-        this.service.search("diante do trono").subscribe((data: any)=> {
+        this.service.search("rock").subscribe((data: any)=> {
             that.list = data.data
             console.log("INIT Search: ", data)
-            
         })
     }
 
@@ -37,10 +36,8 @@ export class ListComponent implements OnInit {
         
         let that = this
         this.service.search(input.value).subscribe((data: any)=> {
-
             that.list = data.data
-            
-            console.log("Search: ", input.value, data)
+            console.log("RUN Search: ", input.value, data)
             
         })
     }
