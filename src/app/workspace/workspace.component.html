@@ -1,0 +1,19 @@
+<section id="workspace" class="background-secoundary">
+    
+    <div class="workspace-bar background-terciary">
+        <i class="material-icons" (click)="navArrowEvent(menu, 'prev')">chevron_left</i>
+        <i class="material-icons" (click)="navArrowEvent(menu, 'next')">chevron_right</i>
+        <div><input name="search" type="search" placeholder="Digite..." (change)="search(menu, $event.target)"></div>
+        <ul>
+            <li *ngFor="let cat of menu.categories" (click)="categoryEvent(menu, cat)">{{cat.name}}</li>
+        </ul>
+        <div class="workspace-account" (click)="userDispatch(menu, user)">
+            <i class="material-icons">account_circle</i>
+            <span>{{user.name}}</span>
+        </div>
+    </div>
+
+    <div class="workspace-content">
+        <router-outlet></router-outlet>
+    </div>
+</section>
