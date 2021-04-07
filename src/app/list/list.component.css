@@ -2,63 +2,9 @@
     min-height: 120px;
     width: 100%;
     height: 100%;
-    color: #FFF; 
-    max-height: calc(100vh - 56px) !important; /* 56px = play bar*/
-}
-
-#list .list-bar {
-    display: grid;
-    grid-template-columns: 28px 28px 200px 1fr 80px;
-    align-items: center;
-    justify-items: center;
-    text-align: center;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-user-select: none;  /* Chrome all / Safari all */
-    -moz-user-select: none;     /* Firefox all */
-    -ms-user-select: none;      /* IE 10+ */
-    user-select: none;
-}
-
-#list .list-bar > i {
-    transform: scale(0.8);
-    cursor: pointer;
-}
-
-#list .list-bar i:hover,
-#list .list-bar i:focus, 
-#list ul > li:hover,
-#list ul > li:focus {
-    color: gray;
-}
-
-#list .list-bar > ul {
-    width: 100%;
-    text-align: left;
-}
-
-#list .list-bar > ul > li {
-    display: inline-flex;
-    padding: 4px 16px;
-    cursor: pointer;
-}
-
-#list .list-account {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#list .list-account > * {
-    font-size: 0.85rem;
-    margin: 0 4px;
-}
-
-#list .list-content  {
-    padding: 8px 16px;
-    display: block;
-    overflow-y: auto;
-    max-height: calc(100% - 56px);
+    color: #FFF;
+    /* 56px = play bar */
+    max-height: calc(100vh - 56px) !important;
 }
 
 #list .list-content .list-title {
@@ -66,15 +12,15 @@
     width: 100%;
 }
 
-#list input {
-    color: #767676;
-    height: 28px;
-    padding: 8px 12px;
-    margin: 0;
-    background-color: #FFF;
-    border-radius: 8px;
-    box-sizing: border-box;
-    width: calc(100% - 16px);
+#list .model {
+    width: 100%;
+    height: 0%;
+    display: block;
+    background-color: rgba(0, 0, 0, 0.9);
+    position: absolute;
+    transition: all 0.4s ease-in-out;
 }
 
-
+    /*  102px = bar top(46px) + bar bottom(56px) */
+    height: calc(100% - 102px);
+}

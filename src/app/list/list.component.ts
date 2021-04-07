@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ListService } from './list.service'
+import { Component, OnInit, Input } from '@angular/core';
+import { DeezerService } from '../deezer/deezer.service'
+import { DataService } from '../services/data.service'
+import { StateMachineService } from '../services/state.machine.service'
 
 @Component({
     selector: 'app-list',
@@ -8,38 +10,64 @@ import { ListService } from './list.service'
 })
 export class ListComponent implements OnInit {
 
-    public service: ListService
+    @Input() user: any = { name: 'lcfrct' }
+
+    private service: any
+    private data: any
+
     public list: any = []
-   
+    public control = {
+        model: true
+    }
 
-    public categories: any = [
-        { name: "Playlist", actions: []},
-        { name: "Podcasts", actions: []},
-        { name: "Artistas", actions: []},
-        { name: "Álbuns", actions: []},
-    ]
-
-    constructor(listService: ListService) {
-        this.service = listService
+    constructor(
+        deezerService: DeezerService,
+        dataService: DataService
+    ) {
+        this.service = deezerService
+        this.data = dataService
     }
 
     ngOnInit(): void {
-        
-        let that = this
-        this.service.search("rock").subscribe((data: any)=> {
-            that.list = data.data
-            console.log("INIT Search: ", data)
+
+        this.data.search.subscribe((search: string) => {
+            this.search(search)
+        })
+
+        this.data.user.subscribe((user: any) => {
+            this.user = user
         })
     }
 
-    public search(input: any) {
-        
+    public search(search: string) {
         let that = this
-        this.service.search(input.value).subscribe((data: any)=> {
-            that.list = data.data
-            console.log("RUN Search: ", input.value, data)
-            
+        let stateMachine = new StateMachineService()
+
+        stateMachine.step("init", (data: any) => {
+            stateMachine.next(this.list)
+
+            this.service.search(search).subscribe((data: any) => {
+                stateMachine.next(data)
+            })
+
         })
+
+        stateMachine.step("load", (data: any, step: string) => {
+            this.control.model = true
+        })
+
+        stateMachine.step("done", (data: any, step: string, steps: any[]) => {
+            that.list = data.data
+            this.control.model = false
+        })
+
+        stateMachine.run(this.user)
+
+    }
+
+    public trackLoad(track: any) {
+        this.data.changeUser(track)
+        console.log("track laod:")
     }
 
 }
