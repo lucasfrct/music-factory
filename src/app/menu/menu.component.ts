@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'app-menu',
@@ -7,23 +7,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-    public menu: any = {
+    @Input() menu: any
+    @Output() menuEvent = new EventEmitter<any>()
+
+    public menuIn: any = {
         icon: "menu",
         logoUrl: "assets/images/logo.png",
         items: [
-            { name: "Início", icon: 'home'},
-            { name: "Descobrir", icon: 'search'},
-            { name: "Sua Biblioteca", icon: 'library_books'}
+            { name: "Início", icon: 'home', action: null },
         ],
         playlists: [
-            { name: "Criar Playlist", icon: 'add_box'},
-            { name: "Mais tocadas", icon: 'favorite'},
+            { name: "Criar Playlist", icon: 'add_box', action: null },
         ]
-
     }
-    constructor() { }
 
-    ngOnInit(): void {
+    constructor() { 
+        this.menu = this.menuIn
     }
+    
+    ngOnInit(): void { }
+    
+    public actionMenuEvent(menu: any, item: any) {
+        //console.log("ACTION MENU EVENT: ", menu, item)
+        this.menuEvent.emit({menu, item})
+    }
+
 
 }
