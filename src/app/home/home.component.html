@@ -1,12 +1,18 @@
 
 <section id="home" class="">
     <div class="row row-flex">
-        <app-menu class="col s1 m1 l4 xl3"></app-menu>
-        <app-list class="col s11 m11 l8 xl9"></app-list>
+        <app-menu [menu]="menu" (menuEvent)="menuEvent($event)" class="col s1 m1 l4 xl3"></app-menu>
+        <app-workspace 
+            [menu]="menu" 
+            [user]="user"
+            (menuEvent)="menuEvent($event)"
+            (navEvent)="menuEvent($event)"
+            (userEvent)="menuEvent($event)"
+            (searchEvent)="searchEvent($event)"
+            class="col s11 m11 l8 xl9"
+        ></app-workspace>
     </div>
     <div class="row row-flex">
-        <app-playbar class="col s12 m12 l12 xl12"></app-playbar>
+        <app-playbar [user]="user" [sound]="sound" (barEvent)="barEvent($event)" class="col s12 m12 l12 xl12"></app-playbar>
     </div>
 </section>
-
-<router-outlet></router-outlet>

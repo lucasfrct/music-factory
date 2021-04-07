@@ -1,20 +1,25 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Angular2MaterializeV1Service } from 'angular2-materialize-v1';
-import { CacheService } from './cache.service'
+import { CacheService } from '../services/cache.service'
+import { DataService } from '../services/data.service'
+
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, AfterViewInit  {
+
+export class HomeComponent implements OnInit {
 
     private materialize: Angular2MaterializeV1Service
     private cache: CacheService
-    private mockUser: any = {
+    public data: any
+
+    public user: any = {
         name: "lucasfrct",
-        seartchs: ['album dt', 'fernanda brum'],
-        librariees: [],
+        searches: ['diante do trono', 'fernanda brum'],
+        libraries: [],
         playlists: [],
         podcasts: [],
         artistis: [],
@@ -22,57 +27,86 @@ export class HomeComponent implements OnInit, AfterViewInit  {
         favorites: [],
         currentAudio: {},
         currentAudioList: [],
-        sesseionAudioList: []
+        sesseionAudioList: [],
+        list: []
+    }
+    
+    public menu: any = {
+        icon: "menu",
+        logoUrl: "assets/images/logo.png",
+        items: [
+            { name: "Início", icon: 'home', action: this.menuAction },
+            { name: "Descobrir", icon: 'search', action: this.menuAction},
+            { name: "Sua Biblioteca", icon: 'library_books', action: this.menuAction}
+        ],
+        playlists: [
+            { name: "Criar Playlist", icon: 'add_box', action: this.menuAction},
+            { name: "Mais tocadas", icon: 'favorite', action: this.menuAction},
+        ],
+        categories: [
+            { name: "Playlist", actions: []},
+            { name: "Podcasts", actions: []},
+            { name: "Artistas", actions: []},
+            { name: "Álbuns", actions: []},
+        ],
     }
 
-    public user: any
+    public sound: any = {
+        url: "",
+        source: null,
+        cursor: 0,
+        volume: 0,
+        shuffle: false,
+        repeat: false,
+        prev: false,
+        next: false,
+        play: ()=> { },
+        onPlaylist: false,
+        volumeActive: false,
+    }
 
+    constructor(
+        angular2MaterializeService: Angular2MaterializeV1Service, 
+        cacheService: CacheService,
+        dataService: DataService,
+    ) {
 
-    constructor(angular2MaterializeService: Angular2MaterializeV1Service, cacheService: CacheService) {
         this.materialize = angular2MaterializeService
         this.cache = cacheService
-    }
-
-    public loadChace () {
-        let username: string = "lucasfrct"
-        
-        this.user = this.cache.get(username)
-        console.log("User: ", this.user)
-        
+        this.data = dataService
     }
 
     ngOnInit(): void {
         this.loadChace()
+
+        this.data.search.subscribe((search: any)=> {
+            this.user.searches.push(search)
+        })
+
+        this.searchEvent(this.user.searches[0])
     }
 
-    public ngAfterViewInit(): void {
-        this.materialize.autoInit();
-
-        // NOTE - autoInit() only works on the currently loaded items in view
-        // this.materialize.dismissAllToasts();
-        // const instance(s) = this.materialize.initAutocomplete('#id, .class, element', {options});
-        // const instance(s) = this.materialize.initCarousel('#id, .class, element', {options});
-        // const instance(s) = this.materialize.initCharacterCount('#id, .class, element', {options});
-        // const instance(s) = this.materialize.initChips('#id, .class, element', {options});
-        // const instance(s) = this.materialize.initCollapsible('#id, .class, element', {options});
-        // const instance(s) = this.materialize.initDatePicker('#id, .class, element', {options});
-        // const instance(s) = this.materialize.initDropdown('#id, .class, element', {options});
-        // const instance(s) = this.materialize.initFloatingActionButton('#id, .class, element', {options});
-        // const instance(s) = this.materialize.initMaterialboxed('#id, .class, element', {options});
-        // const instance(s) = this.materialize.initModal('#id, .class, element', {options});
-        // const instance(s) = this.materialize.initParallax('#id, .class, element', {options});
-        // const instance(s) = this.materialize.initPushpin('#id, .class, element', {options});
-        // const instance(s) = this.materialize.initScrollSpy('#id, .class, element', {options});
-        // const instance(s) = this.materialize.initSelect('#id, .class, element', {options});
-        // const instance(s) = this.materialize.initSidenav('#id, .class, element', {options});
-        // const instance(s) = this.materialize.initSlider('#id, .class, element', {options});
-        // const instance(s) = this.materialize.initTabs('#id, .class, element', {options});
-        // const instance(s) = this.materialize.initTapTarget('#id, .class, element', {options});
-        // const instance(s) = this.materialize.initTimepicker('#id, .class, element', {options});
-        // const instance(s) = this.materialize.initTooltip('#id, .class, element', {options});
-        // const instance = this.materialize.toast({options});
-        // this.materialize.textareaAutoResize();
-        // this.materialize.updateTextFields();
+    public loadChace () {
+        let username: string = "lucasfrct"
+        this.cache.set(username, this.user)
+        this.user = this.cache.get(username)
+        this.data.changeUser(this.user)
     }
 
+    private menuAction(data: any) {
+        console.log("HOME MENU ACTION: ", data)
+    }
+
+    public menuEvent(data: any) {
+        console.log("HOME MENU EVENT: ", data)
+    }
+    
+    public searchEvent(search: string) {
+        this.data.changeSearch(search)
+    }
+
+    public barEvent(data: any) {
+        console.log("BAR EVENT", data)
+    }
+    
 }
