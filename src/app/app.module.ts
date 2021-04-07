@@ -11,6 +11,7 @@ import { MenuComponent } from './menu/menu.component';
 import { PlaybarComponent } from './playbar/playbar.component';
 import { ListComponent } from './list/list.component';
 import { CardComponent } from './card/card.component';
+import { WorkspaceComponent } from './workspace/workspace.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { CardComponent } from './card/card.component';
         MenuComponent,
         PlaybarComponent,
         ListComponent,
-        CardComponent
+        CardComponent,
+        WorkspaceComponent
     ],
     imports: [
         BrowserModule,
