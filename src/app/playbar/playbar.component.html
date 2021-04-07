@@ -3,22 +3,21 @@
     <div class="col s6">
         <section id="player">
             <div class="controls">
-                <i class="material-icons">shuffle</i>
-                <i class="material-icons">skip_previous</i>
-                <i class="material-icons">play_circle_filled</i>
-                <i class="material-icons">skip_next</i>
-                <i class="material-icons">repeat</i>
+                <i class="material-icons" (click)="shuffleEvent()">shuffle</i>
+                <i class="material-icons" (click)="prevEvent()">skip_previous</i>
+                <i class="material-icons" (click)="playEvent()">play_circle_filled</i>
+                <i class="material-icons" (click)="nextEvent()">skip_next</i>
+                <i class="material-icons" (click)="repeatEvent()">repeat</i>
             </div>
             <div class="display">
                 <span>0:00</span>
                 <mat-slider
                     class="displaytime"
                     thumbLabel
-                    (change)="pictureManip($event)"
-                    [displayWith]="formatLabel"
-                    tickInterval="100"
+                    (change)="changeCursor($event.value)"
+                    [displayWith]="formatTime"
                     min="1"
-                    max="100"   
+                    max="400"   
                 ></mat-slider>
                 <span>0:00</span>
             </div>
@@ -28,14 +27,14 @@
     <div class="col s3">
         <section id="player">
             <div class="volume">
-                <i class="material-icons">playlist_play</i>
-                <i class="material-icons">volume_up</i> 
+                <i class="material-icons" (click)="playListEvent()">playlist_play</i>
+                <i class="material-icons" (click)="volumeActive()">volume_up</i> 
                 <mat-slider
                     class="volume-value"
                     thumbLabel
-                    (change)="pictureManip($event)"
-                    [displayWith]="formatLabel"
-                    tickInterval="100"
+                    (change)="changeVolume($event.value)"
+                    [displayWith]="formatVolume"
+                    tickInterval="10"
                     min="1"
                     max="100"   
                 ></mat-slider>
